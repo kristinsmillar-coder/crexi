@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Commercial Real Estate Scraper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🏢 Commercial Real Estate Scraper</h1>
+            <p class="subtitle">Find commercial properties across multiple platforms</p>
+        </header>
+
+        <!-- Search Form -->
+        <div class="card">
+            <h2>Search Properties</h2>
+            <form id="searchForm">
+                <!-- Site Selection -->
+                <div class="form-group">
+                    <label for="site">Select Site *</label>
+                    <select id="site" name="site" required>
+                        <option value="">Choose a site...</option>
+                        <option value="loopnet">LoopNet</option>
+                        <option value="crexi">Crexi</option>
+                        <option value="all">All Sites</option>
+                    </select>
+                </div>
+
+                <!-- Location -->
+                <div class="form-group">
+                    <label for="location">Location *</label>
+                    <input type="text" id="location" name="location" placeholder="e.g., New York, NY or 90210" required>
+                    <small>Enter city and state or zip code</small>
+                </div>
+
+                <!-- Property Type -->
+                <div class="form-group">
+                    <label for="property_type">Property Type</label>
+                    <select id="property_type" name="property_type">
+                        <option value="">All Types</option>
+                        <option value="office">Office</option>
+                        <option value="retail">Retail</option>
+                        <option value="industrial">Industrial</option>
+                        <option value="multifamily">Multifamily</option>
+                        <option value="land">Land</option>
+                        <option value="hospitality">Hospitality</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="special_purpose">Special Purpose</option>
+                    </select>
+                </div>
+
+                <!-- Price Range -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="min_price">Min Price ($)</label>
+                        <input type="number" id="min_price" name="min_price" placeholder="e.g., 500000" step="1000">
+                    </div>
+                    <div class="form-group">
+                        <label for="max_price">Max Price ($)</label>
+                        <input type="number" id="max_price" name="max_price" placeholder="e.g., 2000000" step="1000">
+                    </div>
+                </div>
+
+                <!-- Size Range -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="min_size">Min Size (sq ft)</label>
+                        <input type="number" id="min_size" name="min_size" placeholder="e.g., 5000" step="100">
+                    </div>
+                    <div class="form-group">
+                        <label for="max_size">Max Size (sq ft)</label>
+                        <input type="number" id="max_size" name="max_size" placeholder="e.g., 50000" step="100">
+                    </div>
+                </div>
+
+                <!-- Max Results -->
+                <div class="form-group">
+                    <label for="max_results">Maximum Results</label>
+                    <input type="number" id="max_results" name="max_results" value="50" min="1" max="500">
+                    <small>Number of properties to scrape (default: 50)</small>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary" id="submitBtn">
+                    <span class="btn-text">Start Scraping</span>
+                </button>
+            </form>
+        </div>
+
+        <!-- Progress Section -->
+        <div id="progressSection" class="card" style="display: none;">
+            <h2>Scraping Progress</h2>
+            <div class="progress-container">
+                <div class="spinner"></div>
+                <p id="progressStatus" class="progress-status">Initializing...</p>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="resultsSection" class="card" style="display: none;">
+            <div class="results-header">
+                <h2>Results</h2>
+                <button id="downloadBtn" class="btn btn-success" style="display: none;">
+                    📥 Download CSV
+                </button>
+            </div>
+
+            <div id="resultsSummary" class="results-summary"></div>
+
+            <div class="table-container">
+                <table id="resultsTable" class="results-table">
+                    <thead>
+                        <tr>
+                            <th>Title</th>
+                            <th>Location</th>
+                            <th>Type</th>
+                            <th>Price</th>
+                            <th>Size (SF)</th>
+                            <th>Cap Rate</th>
+                            <th>Source</th>
+                            <th>Link</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsBody">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>⚠️ Use responsibly. Only scrape publicly available data and respect terms of service.</p>
+            <p>Built with Flask, Python, and modern web technologies</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

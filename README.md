@@ -2,6 +2,33 @@
 
 A flexible, multi-site web scraper for commercial real estate listings. Extract property data from multiple platforms including LoopNet, Crexi, and more.
 
+## 🚀 Two Ways to Use
+
+### 🌐 Web App (No Coding Required!)
+Use the beautiful web interface - just click buttons and fill in forms!
+
+**Quick Start:**
+```bash
+# Mac/Linux
+./start_webapp.sh
+
+# Windows
+start_webapp.bat
+```
+
+Then open http://localhost:5000 in your browser.
+
+👉 **See [WEB_APP_GUIDE.md](WEB_APP_GUIDE.md) for detailed web app instructions**
+
+### 💻 Command Line (For Developers)
+Use the CLI for automation and scripting.
+
+```bash
+python main.py --site loopnet --location "New York, NY" --property-type office
+```
+
+👉 **See [USAGE_GUIDE.md](USAGE_GUIDE.md) for detailed CLI instructions**
+
 ## Features
 
 - **Multi-site support**: Scrape from LoopNet, Crexi, and other commercial real estate platforms
